@@ -1,0 +1,11 @@
+#habilita a reescrita
+RewriteEngine On
+
+#arquivo
+RewriteCond %{REQUEST_FILENAME} !-f
+
+#diretorio
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#nada encontrado inclui o index
+RewriteRule ^ index.php [QSA,L]
