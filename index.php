@@ -14,9 +14,16 @@ Slim::registerAutoloader();
 
 $app = new Slim();
 
+//pode utilizar o método do slim ou da variavel $_SERVER
 $url = $app->request->getResourceUri();
 
+$url = $_SERVER['REQUEST_URI'];
+
+//instancia e informa o path dos modulos
 $router = new Router('app');
+
+//caso tenho um path root, pode informalo
+$router->setPathRoot('slim-router');
 
 $router->setUrl($url);
 

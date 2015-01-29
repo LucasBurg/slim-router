@@ -4,7 +4,7 @@ namespace Buum\Router;
 abstract class Url
 {
 	const REPLACE = '|';
-	const GLUES = array('/','-');
+	const GLUES = array('/');
 
 	protected function cleanUrl($url)
 	{
