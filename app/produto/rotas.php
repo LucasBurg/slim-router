@@ -5,4 +5,8 @@ $app->group('/produto',function()use($app){
 		echo 'O arquivo de rotas do modulo produto foram carregadas.';
 	});
 
+	$app->get('/exportacao',function(){
+		echo 'teste produto exportacao';
+	});
+
 });
