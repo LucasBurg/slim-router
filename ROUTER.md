@@ -1,31 +1,4 @@
 # Estrutura dos arquivos, as rotas podem estar em subdiretórios.
-``` 
-app
- |
- |-- modulo-1
- |   |
- |   |--package-1
- |   |  |
- |   |  |--model-1
- |   |  |  |
- |   |  |  |--rotas.php
- |   |  |
- |   |  |--model-2 
- |   |  |  |
- |   |  |  |--rotas.php
- |   |  |
- |   |  |--rotas.php
- |   |  
- |   |--package-2
- |      |
- |      |--rotas.php
- |   
- |-- modulo-2
- |   |
- |   |--rotas.php
- |
- |-- modulo-3
-```
 
-
-
+As rotas não seguem uma estrutura pré-definida pela lib agora,
+elas podem estar onde você quiser e com o nome que quiser.
