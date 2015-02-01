@@ -1,61 +1,46 @@
 <?php
+
 namespace Buum\Router;
 
-class Router extends Url
+class Router
 {
-	const FILE = 'rotas.php';
+    /**
+     * @var string
+     */
+    private $routesPath;
 
-	private $url;
-	private $pathRoot;
-	private $pathApplication;
+    /**
+     * @var string
+     */
+    private $routeFilename;
 
-	public function __construct($pathApplication)
-	{
-		$this->pathApplication = (is_dir($pathApplication))?$pathApplication:false;
-	}
+    /**
+     * @param string $routesPath
+     * @param string $routeFilename
+     */
+    public function __construct($routesPath, $routeFilename)
+    {
+        $this->routesPath = $routesPath;
+        $this->routeFilename = $routeFilename;
+    }
 
-	public function setUrl($url)
-	{
-		$this->url = $url;
-	}
+    /**
+     * @return array
+     */
+    public function getRoutesFiles()
+    {
+        $files = [];
+        $iterator = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($this->routesPath),
+            \RecursiveIteratorIterator::SELF_FIRST
+        );
 
-	public function setPathRoot($pathRoot)
-	{
-		$this->pathRoot = $pathRoot;
-	}
+        foreach ($iterator as $fileInfo) {
+            if ($fileInfo->isFile() && $fileInfo->getFilename() == $this->routeFilename) {
+                $files[] = $fileInfo->getPathname();
+            }
+        }
 
-	public function getUrl()
-	{
-		return $this->url;
-	}
-
-	public function getPathRoot()
-	{
-		return $this->pathRoot;
-	}
-
-	public function addRotas()
-	{
-		$arrUrl = $this->getArrayUrl($this->url);
-		$keyPathRoot = array_search($this->pathRoot, $arrUrl);
-		if($keyPathRoot){
-			unset($arrUrl[$keyPathRoot]);
-		}
-		if($this->pathApplication && is_array($arrUrl)){
-			$rota = $this->pathApplication.DIRECTORY_SEPARATOR;
-			$files = array();
-			if(empty($arrUrl)){
-				$files[] = $rota.self::FILE;
-			} else {
-				foreach ($arrUrl as $k => $path) {
-					$rota .= $path.DIRECTORY_SEPARATOR;
-					if(file_exists($rota.self::FILE)){
-						$files[] = $rota.self::FILE;		
-					}
-				}
-			}
-			return $files;
-		}
-		return false;
-	}
+        return $files;
+    }
 }

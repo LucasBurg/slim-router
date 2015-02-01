@@ -1,0 +1,23 @@
+{
+    "name": "lucasburg/slim-router",
+    "description": "Inclui rotas por path",
+    "require": {
+        "slim/slim": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.6@dev"
+    },
+    "license": "WTFPL",
+    "authors": [
+        {
+            "name": "LucasBurg",
+            "email": "lucasburgmota@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Buum\\": "lib/Buum/"
+        }
+    }
+}
